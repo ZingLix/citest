@@ -1,2 +1,4 @@
 dist
 docs
+__pycache__
+.*_cache
