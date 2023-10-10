@@ -1,0 +1,47 @@
+---
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:  
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  POETRY_VERSION: "1.6.1"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+    name: Python ${{ matrix.python-version }} lint
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python ${{ matrix.python-version }} and Poetry ${{ env.POETRY_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+        run: pip3 install poetry==${{ env.POETRY_VERSION }}
+
+      - name: Install
+        run: |
+          poetry install
+
+      - name: Lint
+        run: make lint
+      
+      - name: Unit Test
+        run: make test
