@@ -11,9 +11,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  POETRY_VERSION: "1.6.1"
-
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -37,7 +34,7 @@ jobs:
 
       - name: Install
         run: |
-          pip3 install poetry==${{ env.POETRY_VERSION }}
+          pip3 install poetry
           poetry install
 
       - name: Lint
