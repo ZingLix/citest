@@ -1,5 +1,4 @@
 import citest.hello as hello
-import pytest
 
 
 def test_add():
