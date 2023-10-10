@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "citest"
+version = "0.0.1"
+description = "testtetst"
+authors = []
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["test"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4"
+
+
+[tool.poetry.group.dev.dependencies]
+setuptools = ">=47"
+sphinx = ">=5"
+pytest = ">=7.0.0"
+flask = ">=2.0.0"
+pytest-asyncio = ">=0.16.0"
+twine = ">=4.0.0"
+coverage = ">=7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
