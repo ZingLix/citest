@@ -58,7 +58,9 @@ jobs:
       - name: zip
         run: |
           zip -r release.zip './build/docs/_build/html'
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          files: release.zip
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: release.zip
+          tag: ${{ github.ref }}
